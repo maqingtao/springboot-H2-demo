@@ -1,0 +1,83 @@
+<html>
+
+<head>
+    <script src="webjars/jquery/3.1.1/jquery.min.js"></script>
+    <script src="webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="webjars/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Insert title here</title>
+
+    <script type="text/javascript">
+    </script>
+
+    <script type="text/javascript">
+
+$(function(){
+
+    $("#send").click(function(){
+
+        var jsondata = $("#jsondata").val();
+
+        var jsonobj = JSON.parse(jsondata)
+
+        var callback = function (data) {
+<!--alert(data)-->
+            $("#result").html(JSON.stringify(data))
+
+        }
+
+
+//传递JSON参数
+ $.postJSON('/api/findCourse',jsonobj,callback)
+
+        });
+
+    })
+
+    $.postJSON = function(url, data, callback) {
+
+        return jQuery.ajax({
+
+            'type' : 'POST',
+
+            'url' : url,
+
+            'contentType' : 'application/json',
+
+            'data' : JSON.stringify(data),
+
+            'dataType' : 'json',
+
+            'success' : callback
+
+        });
+
+    };
+
+</script>
+
+</head>
+
+<body>
+<div align="center">
+JSON对象
+
+<br>
+
+    <textarea id="jsondata" cols="60" rows="8" style="align-content: center">
+
+{"stu_id":"100023","choose_date":"2017-7"}
+
+    </textarea><br>
+
+
+
+<button id="send">POST</button><br>
+
+
+<font color="red" id="result" style="align-content: center"></font>
+</div>
+</body>
+
+</html>
