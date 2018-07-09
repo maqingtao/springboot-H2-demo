@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  * @author: maqingtao
- * @description:
+ * @description: 学生选课信息查询controller入口
  * @date: create 2018-7-5
  * @modified:
  */
@@ -31,11 +31,18 @@ public class ChooseCourseController {
     @Autowired
     private ChooseCourseService service;
 
+    /**
+    * @author: maqingtao
+    * @description: 主要方法入口
+    * @date: create in 2018-7-5
+    * @modified: commonForm接收查询条件变量
+    */
     @RequestMapping(value = "/findCourse", method = RequestMethod.POST, consumes = "application/json")
     public String findStudentCourse(@RequestBody CommonForm commonForm) {
         logger.info("parameter " + commonForm + "time " + System.currentTimeMillis());
+        //根据条件得到查询数据
         List<ChooseCourse> list = service.findCourseInformationTwo(commonForm);
-        if (list.size() == 0 || list == null) {
+        if (list==null||list.size() == 0) {
             return JSON.toJSONString(Constant.ERROR_MESSAGE);
         }
         List<Results> result=ChooseCourseUtil.getSuccessResult(list);

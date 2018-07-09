@@ -13,7 +13,12 @@ import java.util.HashMap;
 @Controller
 public class indexController {
 
-    //跳转到根页面
+    /**
+     * @author: maqingtao
+     * @description: 跳转到index页面
+     * @date: create in 2018-7-9
+     * @modified:
+     */
     @RequestMapping("/")
     public String helloHtml() {
         return "/index";

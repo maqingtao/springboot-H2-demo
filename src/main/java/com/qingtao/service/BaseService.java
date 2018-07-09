@@ -11,7 +11,13 @@ import java.util.List;
 * @modified:
 */
 public interface BaseService<T> {
-    //基本查询方法，commonForm为查询条件实体
+
+    /**
+     * @author: maqingtao
+     * @description: 基本查询方法，commonForm为查询条件实体
+     * @date: 2018-7-5
+     * @modified:
+     */
     @SuppressWarnings("rawtypes")
     List<ChooseCourse> findAllData(CommonForm commonForm);
 }
