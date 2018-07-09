@@ -22,9 +22,9 @@ public class chooseCourseTest {
     @Before
     public void setValue()
     {
-        commonForm.setStu_id("200023");
+        commonForm.setStu_id("100023");
         commonForm.setCourse_id("12");
-        commonForm.setChoose_date("2017-1");
+        commonForm.setChoose_date("2017-7");
     }
 
     @Test
@@ -34,4 +34,14 @@ public class chooseCourseTest {
         assertNotNull(list);
         assertTrue(list.size()>0);
     }
+
+    @Test
+    public void serviceTestTwo()
+    {
+        List<ChooseCourse> list=chooseCourseService.findCourseInformationTwo(commonForm);
+        assertNotNull(list);
+        assertTrue(list.size()>0);
+    }
+
+
 }

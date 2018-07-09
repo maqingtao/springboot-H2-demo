@@ -3,19 +3,17 @@
 
     <property name="CATALINA_BASE" value="../logs"></property>
 
-    <!-- 控制台输出 -->
+
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder charset="UTF-8">
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{"yyyy-MM-dd'T'HH:mm:ss,SSS"} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
-
-    <!-- 文件输出=每天产生一个文件-->
     <appender name="FILE1" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- daily rollover -->
             <fileNamePattern>${CATALINA_BASE}/Info-%d{yyyy-MM-dd}.log</fileNamePattern>
-            <!-- keep 30 days' worth of history -->
+
             <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder charset="UTF-8">
@@ -35,33 +33,24 @@
     </appender>
     <appender name="FILE3" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- 按天回滚 daily -->
-            <!-- log.dir 在maven profile里配置 -->
             <fileNamePattern>${CATALINA_BASE}/error-%d{yyyy-MM-dd}.log</fileNamePattern>
-            <!-- 日志最大的历史 60天 -->
-            <maxHistory>60</maxHistory>
+            <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 只打印错误日志 -->
-            <level>ERROR</level>
+            <level>INFO</level>
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
     </appender>
 
-    <root level="ERROR">
-        <appender-ref ref="CONSOLE" />
+    <root level="info">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE1"/>
+        <appender-ref ref="FILE2"/>
+        <appender-ref ref="FILE3"/>
     </root>
-    <logger name="com.qingtao" level="INFO">
-        <appender-ref ref="FILE1" />
-    </logger>
-    <logger name="com.qingtao.service" level="DEBUG">
-        <appender-ref ref="FILE2" />
-    </logger>
-    <logger name="com.qingtao" level="ERROR">
-        <appender-ref ref="FILE3" />
-    </logger>
 
 </configuration>

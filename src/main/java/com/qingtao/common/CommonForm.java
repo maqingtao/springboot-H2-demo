@@ -1,12 +1,18 @@
 package com.qingtao.common;
+
 /**
-* @author: maqingtao
-* @description: 实体类为了获取查询条件
-* @date: 2018-7-5
-* @modified:
-*/
+ * @author: maqingtao
+ * @description: 获取查询条件
+ * @date: 2018-7-5
+ * @modified:
+ */
 public class CommonForm {
-    String stu_id;
+    //学生学号
+    private String stu_id;
+    //课程号
+    private String course_id;
+    //选课时间
+    private String choose_date;
 
     public String getStu_id() {
         return stu_id;
@@ -41,6 +47,5 @@ public class CommonForm {
                 '}';
     }
 
-    String course_id;
-    String choose_date;
+
 }

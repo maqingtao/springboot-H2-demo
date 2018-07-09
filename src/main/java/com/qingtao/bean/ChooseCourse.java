@@ -1,14 +1,17 @@
 package com.qingtao.bean;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import org.springframework.core.annotation.Order;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 /**
-* @author: maqingtao
-* @description: 选课信息实体类
-* @date: create in 2018-7-5
-* @modified:
-*/
+ * @author: maqingtao
+ * @description: 选课信息实体类
+ * @date: create in 2018-7-5
+ * @modified:
+ */
 @Entity
 @Table(name = "stu_choose_course")
 public class ChooseCourse implements Serializable {
@@ -16,14 +19,22 @@ public class ChooseCourse implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    //学生学号
+    @JSONField(ordinal = 1)
     private String stu_id;
-
+    //学生姓名
+    @JSONField(ordinal = 2)
     private String stu_name;
-
+    //课程号
+    @JSONField(ordinal = 3)
     private String course_id;
-
+    //课程名
+    @JSONField(ordinal = 4)
     private String course_name;
+    //选课时间
+    @JSONField(ordinal = 5)
     private String choose_date;
+
     public long getId() {
         return id;
     }
