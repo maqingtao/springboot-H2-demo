@@ -1,13 +1,9 @@
 package com.qingtao.chooseservice;
 
-import com.alibaba.fastjson.JSON;
 import com.qingtao.BaseTest;
 import com.qingtao.DemoApplication;
 import com.qingtao.bean.ChooseCourse;
-import com.qingtao.common.CommonForm;
-import com.qingtao.common.Constant;
 import com.qingtao.service.ChooseCourseService;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +18,7 @@ import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = DemoApplication.class)
-public class chooseCourseServiceTest {
+public class ChooseCourseServiceTest {
     @Autowired
     private ChooseCourseService chooseCourseService;
 
@@ -48,9 +44,12 @@ public class chooseCourseServiceTest {
     @Test
     public void serviceTestTwo() {
         List<ChooseCourse> list = chooseCourseService.findCourseInformationTwo(BaseTest.getRightCondition());
-        assertNotNull(list);
         assertTrue(list.size() > 0);
+        assertNotNull(list);
+        assertTrue(BaseTest.resultCompare(list));
+
     }
+
     /**
      * @author: maqingtao
      * @description: findAll查询service测试(无满足条件的结果)
@@ -58,10 +57,9 @@ public class chooseCourseServiceTest {
      * @modified:
      */
     @Test
-    public void serviceTestErrorOne()
-    {
-        List<ChooseCourse> list=chooseCourseService.findCourseInformationTwo(BaseTest.getErrorCondition());
-        assertTrue(list.size()==0);
+    public void serviceTestErrorOne() {
+        List<ChooseCourse> list = chooseCourseService.findCourseInformationTwo(BaseTest.getErrorCondition());
+        assertTrue(list.size() == 0);
     }
 
     /**
@@ -71,9 +69,8 @@ public class chooseCourseServiceTest {
      * @modified:
      */
     @Test
-    public void serviceTestErrorTwo()
-    {
-        List<ChooseCourse> list=chooseCourseService.findCourseInformationTwo(null);
+    public void serviceTestErrorTwo() {
+        List<ChooseCourse> list = chooseCourseService.findCourseInformationTwo(null);
         assertNull(list);
     }
 

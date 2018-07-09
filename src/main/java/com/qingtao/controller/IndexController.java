@@ -11,7 +11,7 @@ import java.util.HashMap;
 * @modified:
 */
 @Controller
-public class indexController {
+public class IndexController {
 
     /**
      * @author: maqingtao
